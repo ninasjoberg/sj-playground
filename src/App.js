@@ -1,12 +1,11 @@
-import React, { Component } from 'react';
+import React from 'react';
 import './App.css';
 import Header from './components/Header';
 import Breadcrumbs from './components/Breadcrumbs/Breadcrumbs';
 import Heading from './components/Heading/Heading';
 import SeatSelection from './components/SeatSelection/SeatSelection';
 
-
-class App extends Component {
+class App extends React.Component {
 
   constructor(props) {
     super(props);

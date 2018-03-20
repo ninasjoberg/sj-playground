@@ -1,16 +1,17 @@
 import React from 'react';
-import MenuButton from './MenuButton.js';
+import MenuButton from './MenuButton';
 import './Header.css';
+import logo from '../assets/logo.svg';
+import user from '../assets/user.svg';
+import menuIcon from '../assets/menu-button.svg';
 
 
-const Header = () => {
-    return (
-        <div className="header-container">
-            <MenuButton name='MENY'></MenuButton>
-            <div>SJ-IKON</div>
-            <MenuButton name='LOGGA IN'>LOGGA IN</MenuButton>
-        </div>
+const Header = () => (
+  <div className="header-container">
+    <MenuButton><img src={menuIcon} alt="Meny" /></MenuButton>
+    <img src={logo} alt="SJ" />
+    <MenuButton><img src={user} alt="Min profil" /></MenuButton>
+  </div>
     );
-};
 
 export default Header;
