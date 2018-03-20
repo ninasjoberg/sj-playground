@@ -9,8 +9,8 @@ class App extends React.Component {
 
   constructor(props) {
     super(props);
-    this.state = { 
-      activeBreadcrumb: 3
+    this.state = {
+      activeBreadcrumb: 3,
     };
   }
 
