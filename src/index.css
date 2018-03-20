@@ -1,5 +1,15 @@
+@font-face {
+  font-family: 'sj_sans';
+  src: url(./fonts/sjsans_regular-webfont.woff2) format('woff2');
+}
+
 body {
   margin: 0;
   padding: 0;
-  font-family: sans-serif;
+  font-family: sj_sans, sans-serif;
 }
+
+button {
+  font-family: sj_sans, sans-serif;
+}
+
