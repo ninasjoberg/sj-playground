@@ -1,4 +1,33 @@
+
+
+.route-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.route-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4ee;
+    border-radius: 8px 8px 0 0 ;
+    height: 62px;
+    margin: 0 12px;
+}
+
 .route {
-    font-size: 16px;
+    font-size: 14px;
     text-align: center;
+    font-weight: bold;
+}
+
+.route-arrow {
+    background-color: #f4f4ee;
+    width: 16px;
+    height: 16px;
+    transform: rotate(45deg);
+    border-radius: 3px;
+    align-self: center;
+    margin-top: -10px;
 }
