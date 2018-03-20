@@ -1,9 +1,9 @@
 import React from 'react';
 import './App.css';
 import Header from './components/Header';
-import Heading from './components/Heading/Heading';
+import Title from './components/Title/Title';
 import Route from './components/Route/Route';
-import SeatSelection from './components/SeatSelection/SeatSelection';
+import SeatSelector from './components/SeatSelector/SeatSelector';
 
 class App extends React.Component {
 
@@ -17,9 +17,9 @@ class App extends React.Component {
     return (
       <div className="App">
         <Header />
-        <Heading />
+        <Title />
         <Route />
-        <SeatSelection />
+        <SeatSelector />
       </div>
     );
   }
