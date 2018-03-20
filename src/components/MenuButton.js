@@ -3,7 +3,7 @@ import './MenuButton.css';
 
 const MenuButton = (props) => (
   <button className="menu-button">
-    {props.name}
+    {props.children}
   </button>
     );
 
