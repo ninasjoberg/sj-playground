@@ -1,10 +1,10 @@
 .menu-button {
-    line-height: 26px;
-    border: 0;
-    background: transparent;
-    margin: 0;
-    display: flex;
-    align-items: center;
+  line-height: 26px;
+  border: 0;
+  background: transparent;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
 .menu-button img {
