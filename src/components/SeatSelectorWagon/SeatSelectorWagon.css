@@ -3,7 +3,8 @@
   position: relative;
   overflow: auto;
   white-space: nowrap;
-  height: 200px;
+  display: flex;
+  flex-direction: column;
 }
 
 .scroll-container::-webkit-scrollbar {
@@ -15,6 +16,7 @@
   align-items: center;
   width: 1366px;
   padding-left: 200px;
+  height: 100px;
 }
 
 .wagon {
@@ -50,6 +52,16 @@
   margin: 0 6px;
 }
 
+.seat-map-scroll-container {
+  position: relative;
+  overflow: auto;
+  white-space: nowrap;
+}
+
+.seat-map-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
 .train-png {
   position: absolute;
   height: 34px;
@@ -60,3 +72,15 @@
 .train-two {
   clip: rect(0px,700px,35px,650px)
 }
+
+.seat-map-scroll-container {
+  display: flex;
+}
+
+.locomotive {
+  border: 1px solid black;
+  height: 230px;
+  min-width: 1630px;
+}
+
+
