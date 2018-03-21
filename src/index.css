@@ -9,6 +9,10 @@
   font-weight: bold;
 }
 
+* {
+  box-sizing: border-box;
+}
+
 
 body {
   margin: 0;

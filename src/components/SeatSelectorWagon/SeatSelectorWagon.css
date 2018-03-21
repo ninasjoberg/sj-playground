@@ -1,0 +1,62 @@
+
+.scroll-container {
+  position: relative;
+  overflow: auto;
+  white-space: nowrap;
+  height: 200px;
+}
+
+.scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.wagon-container {
+  justify-content: space-between;
+  align-items: center;
+  width: 1366px;
+  padding-left: 200px;
+}
+
+.wagon {
+  display: flex;
+  width: 190px;
+  margin-right: 4px;
+  float: left;
+  align-items: center;
+  justify-content: center;
+}
+
+.wagon-heading {
+  font-size: 16px;
+  text-align: center;
+}
+
+.wagon-class {
+  font-size: 16px;
+  font-weight: 100;
+}
+
+.wagon-icon {
+  display: flex;
+  align-items: center;
+}
+
+.wagon-icon::before {
+  content: "";
+  background-color: #f4f4ee;
+  width: 5px;
+  height: 5px;
+  border-radius: 5px;
+  margin: 0 6px;
+}
+
+.train-png {
+  position: absolute;
+  height: 34px;
+  top: 40px;
+  left: 10px;
+}
+
+.train-two {
+  clip: rect(0px,700px,35px,650px)
+}
