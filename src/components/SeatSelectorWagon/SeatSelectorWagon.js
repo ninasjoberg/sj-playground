@@ -1,35 +1,42 @@
 import React from 'react';
 import './SeatSelectorWagon.css';
 import bistroIcon from '../../assets/bistro.svg';
-import train from '../../assets/train.png';
-import trainTwo from '../../assets/train-2.png';
 import interiorImg from '../../assets/train-img.svg';
 import interiorBistroImg from '../../assets/train-bistro-img.svg';
 import interiorLocomotive from '../../assets/locomotive.png';
+import overviewLocomotive from '../../assets/overview/loc.png';
+import overviewWagon from '../../assets/overview/wagon.png';
+import overviewEndWagon from '../../assets/overview/endwagon.png';
 
 const wagons = [
-  { type: 'locomotive', name: null, icon: false, selected: false, class: null, interior: interiorLocomotive, width: "1000px" },
-  { name: 'Vagn 1', icon: false, selected: false, class: '1 kl', interior: interiorImg },
-  { name: 'Vagn 2', icon: false, selected: false, class: '1 kl', interior: interiorImg },
-  { name: 'Vagn 3', icon: false, selected: false, class: false, interior: interiorImg },
-  { name: 'Vagn 4', icon: bistroIcon, selected: false, class: false, interior: interiorBistroImg, width: "1578px" },
-  { name: 'Vagn 5', icon: false, selected: false, class: false, interior: interiorImg },
-  { name: 'Vagn 6', icon: false, selected: false, class: false, interior: interiorImg , width: "1630px"},
+  { type: 'locomotive', name: null, icon: false, selected: false, class: null, interior: interiorLocomotive, overview: overviewLocomotive, overviewWidth: '186px', width: '1000px' },
+  { name: 'Vagn 1', icon: false, selected: false, class: '1 kl', interior: interiorImg, overview: overviewWagon },
+  { name: 'Vagn 2', icon: false, selected: false, class: '1 kl', interior: interiorImg, overview: overviewWagon },
+  { name: 'Vagn 3', icon: false, selected: false, class: false, interior: interiorImg, overview: overviewWagon },
+  { name: 'Vagn 4', icon: bistroIcon, selected: false, class: false, interior: interiorBistroImg, overview: overviewWagon, width: '1578px' },
+  { name: 'Vagn 5', icon: false, selected: false, class: false, interior: interiorImg, overview: overviewWagon },
+  { name: 'Vagn 6', icon: false, selected: false, class: false, interior: interiorImg, overview: overviewEndWagon, overviewWidth: '206px', width: '1630px' },
 ];
 
-const OverviewWagon = (wagon) => (
-  <div className="wagon">
-    <h3 className="wagon-heading">{wagon.name}</h3>
-    { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
-    { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
-  </div>
-);
+const OverviewWagon = (wagon) => {
+  const w = wagon.overviewWidth || '190px';
+  return (
+    <div className="wagon" style={{ width: w }}>
+      <div className="wagon-heading">
+        <h3>{wagon.name}</h3>
+        { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
+        { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
+      </div>
+      <img className="overview-wagon-image" src={wagon.overview} alt="train" />
+    </div>
+  )
+};
 
 const SeatMapWagon = (wagon) => {
   const cl = wagon.type ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
   const w = wagon.width || '1366px';
   return (
-    <div className={cl} style={{width: w}}>
+    <div className={cl} style={{ width: w }}>
       <img className="train-img"src={wagon.interior} alt="seatIcon"></img>
     </div>
   );
@@ -74,8 +81,6 @@ class seatSelectorWagon extends React.Component {
           <div className="overview-container">
             { wagons.map((w) => OverviewWagon(w)) }
           </div>
-          <img className="train-png"src={train} alt="seatIcon"></img>
-          <img className="train-png train-two"src={trainTwo} alt="seatIcon"></img>
         </div>
         <div className="seatmap-scroll">
           <div className="seatmap-container">

@@ -12,23 +12,35 @@
 }
 
 .overview-container {
+  display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 1366px;
+  margin-bottom: 10px;
+  width: 1342px;
+}
 
-  height: 100px;
+.overview-wagon-image {
+  height: 34px;
+}
+
+.overview-wagon-image-colored {
+  clip: rect(0px,700px,35px,650px)
 }
 
 .wagon {
   display: flex;
-  width: 190px;
-  margin-right: 4px;
-  float: left;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
 }
 
 .wagon-heading {
+  display: flex;
+  height: 40px;
+  align-items: center;
+}
+
+.wagon-heading h3 {
   font-size: 16px;
   text-align: center;
 }
@@ -62,16 +74,7 @@
   display: none;
 }
 
-.train-png {
-  position: absolute;
-  height: 34px;
-  top: 40px;
-  left: 10px;
-}
 
-.train-two {
-  clip: rect(0px,700px,35px,650px)
-}
 
 .seatmap-container {
   display: inline-block;
