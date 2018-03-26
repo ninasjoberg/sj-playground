@@ -1,5 +1,5 @@
 
-.scroll-container {
+.overview-scroll {
   position: relative;
   overflow: auto;
   white-space: nowrap;
@@ -7,15 +7,15 @@
   flex-direction: column;
 }
 
-.scroll-container::-webkit-scrollbar {
+.overview-scroll::-webkit-scrollbar {
   display: none;
 }
 
-.wagon-container {
+.overview-container {
   justify-content: space-between;
   align-items: center;
   width: 1366px;
-  padding-left: 200px;
+
   height: 100px;
 }
 
@@ -52,13 +52,13 @@
   margin: 0 6px;
 }
 
-.seat-map-scroll-container {
+.seatmap-scroll {
   position: relative;
   overflow: auto;
   white-space: nowrap;
 }
 
-.seat-map-scroll-container::-webkit-scrollbar {
+.seatmap-scroll::-webkit-scrollbar {
   display: none;
 }
 
@@ -73,14 +73,16 @@
   clip: rect(0px,700px,35px,650px)
 }
 
-.seat-map-scroll-container {
-  display: flex;
+.seatmap-container {
+  display: inline-block;
 }
 
-.locomotive {
-  border: 1px solid black;
+.seatmap-wagon {
   height: 230px;
-  min-width: 1630px;
+  display: inline-block;
+  width: 1630px;
 }
+
+
 
 

@@ -3,26 +3,37 @@ import './SeatSelectorWagon.css';
 import bistroIcon from '../../assets/bistro.svg';
 import train from '../../assets/train.png';
 import trainTwo from '../../assets/train-2.png';
-import TrainImg from '../../assets/train-img.svg';
-import TrainBistroImg from '../../assets/train-bistro-img.svg';
-
+import interiorImg from '../../assets/train-img.svg';
+import interiorBistroImg from '../../assets/train-bistro-img.svg';
+import interiorLocomotive from '../../assets/locomotive.png';
 
 const wagons = [
-  { name: 'Vagn 1', icon: false, selected: false, class: '1 kl' },
-  { name: 'Vagn 2', icon: false, selected: false, class: '1 kl' },
-  { name: 'Vagn 3', icon: false, selected: false, class: false },
-  { name: 'Vagn 4', icon: bistroIcon, selected: false, class: false },
-  { name: 'Vagn 5', icon: false, selected: false, class: false },
-  { name: 'Vagn 6', icon: false, selected: false, class: false },
+  { type: 'locomotive', name: null, icon: false, selected: false, class: null, interior: interiorLocomotive, width: "1000px" },
+  { name: 'Vagn 1', icon: false, selected: false, class: '1 kl', interior: interiorImg },
+  { name: 'Vagn 2', icon: false, selected: false, class: '1 kl', interior: interiorImg },
+  { name: 'Vagn 3', icon: false, selected: false, class: false, interior: interiorImg },
+  { name: 'Vagn 4', icon: bistroIcon, selected: false, class: false, interior: interiorBistroImg, width: "1578px" },
+  { name: 'Vagn 5', icon: false, selected: false, class: false, interior: interiorImg },
+  { name: 'Vagn 6', icon: false, selected: false, class: false, interior: interiorImg , width: "1630px"},
 ];
 
-const Wagon = (wagon) => (
+const OverviewWagon = (wagon) => (
   <div className="wagon">
     <h3 className="wagon-heading">{wagon.name}</h3>
     { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
     { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
   </div>
 );
+
+const SeatMapWagon = (wagon) => {
+  const cl = wagon.type ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
+  const w = wagon.width || '1366px';
+  return (
+    <div className={cl} style={{width: w}}>
+      <img className="train-img"src={wagon.interior} alt="seatIcon"></img>
+    </div>
+  );
+};
 
 
 class seatSelectorWagon extends React.Component {
@@ -34,43 +45,42 @@ class seatSelectorWagon extends React.Component {
   }
 
   componentDidMount() {
-    const scrollDiv = document.querySelector('.seat-map-scroll-container');
-    scrollDiv.addEventListener('scroll', this.handleScroll);
+    const seatMapScroll = document.querySelector('.seatmap-scroll');
+    const overviewScroll = document.querySelector('.overview-scroll');
+    // add rezise listener
+    const overviewWidth = document.querySelector('.overview-container').getBoundingClientRect().width;
+    const seatMapWidth = document.querySelector('.seatmap-container').getBoundingClientRect().width;
+    const screenWidth = seatMapScroll.getBoundingClientRect().width;
+    const targets = {
+      leaderWidth: seatMapWidth,
+      leaderScroll: seatMapScroll,
+      followerWidth: overviewWidth,
+      followerScroll: overviewScroll,
+      screenWidth,
+    };
+    seatMapScroll.addEventListener('scroll', (e) => this.handleScroll(e, targets));
   }
 
-  handleScroll = (event) => {
-
-    const seatMapWidth = event.target.scrollWidth; //total scroll width
-    const seatMapCurrentScrollPosition = event.target.scrollLeft; //is this the right value to use? will never be 1
-    console.log('left', event.target.scrollLeft);
-    const scrollWith = seatMapCurrentScrollPosition / (seatMapWidth + event.target.clientWidth);
-
-    console.log('scrollWith', scrollWith);
-    console.log('scrollTo', scrollWith * 1366);
-
-    const scrollDivOne = document.querySelector('.scroll-container');
-    scrollDivOne.scrollTo(((scrollWith * 1366) - 365), 0);
-
+  handleScroll = (event, targets) => {
+    const scrollPercent = targets.leaderScroll.scrollLeft / (targets.leaderWidth - targets.screenWidth);
+    const scrollTarget = scrollPercent * (targets.followerWidth - targets.screenWidth);
+    targets.followerScroll.scrollTo(scrollTarget, 0);
   }
 
   render() {
     return (
       <div>
-        <div className="scroll-container">
-          <div className="wagon-container">
-            { wagons.map((w) => Wagon(w)) }
+        <div className="overview-scroll">
+          <div className="overview-container">
+            { wagons.map((w) => OverviewWagon(w)) }
           </div>
           <img className="train-png"src={train} alt="seatIcon"></img>
           <img className="train-png train-two"src={trainTwo} alt="seatIcon"></img>
         </div>
-        <div className="seat-map-scroll-container">
-          <div className="locomotive">LOK</div>
-          <img className="train-img"src={TrainImg} alt="seatIcon"></img>
-          <img className="train-img"src={TrainImg} alt="seatIcon"></img>
-          <img className="train-img"src={TrainImg} alt="seatIcon"></img>
-          <img className="train-img"src={TrainBistroImg} alt="seatIcon"></img>
-          <img className="train-img"src={TrainImg} alt="seatIcon"></img>
-          <img className="train-img"src={TrainImg} alt="seatIcon"></img>
+        <div className="seatmap-scroll">
+          <div className="seatmap-container">
+            { wagons.map((w) => SeatMapWagon(w)) }
+          </div>
         </div>
       </div>
     );

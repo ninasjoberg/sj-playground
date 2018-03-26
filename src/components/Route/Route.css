@@ -6,6 +6,19 @@
     justify-content: center;
 }
 
+.route-container::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top: solid 10px #f4f4ee;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+
 .route-box {
     display: flex;
     align-items: center;
@@ -17,17 +30,7 @@
 }
 
 .route {
-    font-size: 14px;
+    font-size: 18px;
     text-align: center;
     font-weight: bold;
-}
-
-.route-arrow {
-    background-color: #f4f4ee;
-    width: 16px;
-    height: 16px;
-    transform: rotate(45deg);
-    border-radius: 3px;
-    align-self: center;
-    margin-top: -10px;
 }

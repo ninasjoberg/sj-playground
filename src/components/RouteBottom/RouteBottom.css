@@ -1,0 +1,29 @@
+
+.route-bottom-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: #f4f4ee;
+    margin: -5px 12px 20px 12px;
+    border-radius: 0 0 8px 8px;
+}
+
+.route-bottom-container::before {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top: solid 10px #fff;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    margin: 0 auto;
+}
+
+.route-bottom-box {
+    display: flex;
+    justify-content: center;
+    color: #9b9b9b;
+}
+
+.route-bottom-box img {
+    margin-right: 10px;
+}

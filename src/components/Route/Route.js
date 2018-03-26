@@ -1,14 +1,12 @@
 import React from 'react';
 import './Route.css';
 
-const Route = () => (
+const Route = (props) => (
   <div className="route-container">
     <div className="route-box">
-      <h2 className="route">Stockholm C - Göteborg C</h2>
+      <h2 className="route">{props.section.to} - {props.section.from}</h2>
     </div>
-    <div className="route-arrow"></div>
   </div>
-
 );
 
 export default Route;
