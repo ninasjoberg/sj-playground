@@ -3,6 +3,17 @@
   src: url(./fonts/sjsans_regular-webfont.woff2) format('woff2');
 }
 
+@font-face {
+  font-family: 'sj_sans';
+  src: url(./fonts/sjsans_bold-webfont.woff2) format('woff2');
+  font-weight: bold;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+
 body {
   margin: 0;
   padding: 0;

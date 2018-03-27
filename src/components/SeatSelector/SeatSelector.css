@@ -1,0 +1,39 @@
+.seat-selector-menu {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 25px;
+}
+
+.seat-icon-div {
+  display: flex;
+  align-items: center;
+}
+
+.arrow-icon-div {
+  display: flex;
+  align-items: center;
+}
+
+.seat-selector-menu-text {
+  font-size: 12px;
+}
+
+.seat-icon {
+  padding-right: 5px;
+  height: 14px;
+}
+
+.seat-svg {
+  fill: #246a8d;
+}
+
+a {
+  color: #246a8d;
+  text-decoration: none;
+}
+
+.arrow-icon {
+  padding-left: 5px;
+  height: 12px;
+}

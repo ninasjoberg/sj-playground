@@ -6,3 +6,24 @@
     background-color: #f4f4ee;
     padding: 0 9px;
 }
+
+.menu-text {
+    font-size: 14px;
+    font-weight: 200;
+    padding-left: 5px;
+}
+
+.logo-container, .profile-container, .menu-container {
+    width: 33%;
+}
+
+.profile-container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.logo-container {
+    display: flex;
+    justify-content: center;
+}
+
