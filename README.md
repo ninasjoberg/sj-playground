@@ -9,23 +9,24 @@ npm start
 
 ## Deployment
 
-###pre requierments
-you will need to install  [heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and have access to ponds heroku account
-login to heroku with ponddigitallicenser@pondsthlm.com
+### Pre requirements
+You will need to install [heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and have access to Pond's Heroku account.
+Login to Heroku with ponddigitallicenser@pondsthlm.com.
 
-### first time
-to deploy you first need to add heroku as a git remote then push to master on heroku
-heroku will then deploy your app to the url above
-do this command once
+### First time
+To deploy, you first need to add Heroku as a git remote and then push to master on Heroku.
+Heroku will then deploy your app to the url above.
+Run this command once.
 ```
 git remote add heroku https://git.heroku.com/sj-playground-pond.git
 git fetch heroku
 ```
-if the fetch works you can then use
-###Deploy!
+If the fetch works you are ready to deploy.
+
+### Deploy
 ```
 npm run deploy
 ```
 
-this script was used for deployment on heroku
+This script was used for deployment on Heroku
 https://github.com/mars/create-react-app-buildpack
