@@ -21,10 +21,10 @@ const wagons = [
 ];
 
 const seats = [
-  { number: 'a', top: 49 },
-  { number: 'b', top: 7 },
-  { number: 'c', top: 139, backward: true },
-  { number: 'd', top: 183, backward: true },
+  { number: 'a', side: 'ab', top: 49 },
+  { number: 'b', side: 'ab', top: 7 },
+  { number: 'c', side: 'cd', top: 139, backward: true },
+  { number: 'd', side: 'cd', top: 183, backward: true },
 ];
 
 const availableSeats = [
@@ -34,19 +34,32 @@ const availableSeats = [
 ];
 
 const standard = {
-  numberOfRows: 20,
-  abOffset: 202,
+  numberOfRows: 21, // 3 with noseats
+
+  abNumberOfRows: 18,
+  cdNumberOfRows: 19,
+
+  abOffset: 208,
   cdOffset: 172,
   exceptionRows: [
     { number: 1,
-      a: { backward: true },
-      b: { backward: true },
+      ab: { backward: true },
     },
     { number: 2,
-      a: { noSeat: true },
-      b: { noSeat: true },
+      ab: { noSeat: true },
     },
-    { number: 3 },
+    { number: 8,
+      ab: { addOffSet: 15 }, // something like this, for walls aso
+    },
+    { number: 9,
+      cd: { noSeat: true },
+    },
+    { number: 15,
+      ab: { noSeat: true },
+    },
+    { number: 20,
+      cd: { noSeat: true },
+    },
   ],
 };
 
@@ -107,8 +120,13 @@ const SeatMapWagon = (wagon) => {
     const oneRow = seats.map((s) => {
       let seat = s;
 
-      if (exceptionRow && exceptionRow[s.number]) {
-        const exceptionSeat = exceptionRow[s.number];
+      if (exceptionRow && exceptionRow[s.side]) {
+        const exceptionSeat = exceptionRow[s.side];
+
+        if (exceptionSeat.addOffSet && seat.side === 'ab') {
+          abOffset += exceptionSeat.addOffSet;
+        }
+
         seat = { ...s, ...exceptionSeat };
       }
 
@@ -117,17 +135,19 @@ const SeatMapWagon = (wagon) => {
       }
       seatNumber += 1;
 
-      const available = availableSeats.find((availableSeat) => { 
+      const available = availableSeats.find((availableSeat) => {
         return seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon;
       });
 
-      const l = seat.number === 'a' || seat.number === 'b' ? `${abOffset}px` : `${cdOffset}px`;
+      const l = seat.side === 'ab' ? `${abOffset}px` : `${cdOffset}px`;
+
+
       const t = `${seat.top}px`;
       const c = seat.backward ? 'seatmap-seat-backwards' : ' ';
       const seatIcon = available ? seatAvailableImg : seatInactive;
       const n = available ? seatNumber : seatNumber; //ta bort sen
 
-      const oneSeat = (
+      return (
         <div className="seatmap-seat" style={{ top: t, left: l }}>
           <div className="seatmap-seat-inner">
             <img className={c} src={seatIcon} alt="seatIcon" />
@@ -135,7 +155,6 @@ const SeatMapWagon = (wagon) => {
           </div>
         </div>
       );
-      return oneSeat;
     });
     allSeats = allSeats.concat(oneRow);
   }
