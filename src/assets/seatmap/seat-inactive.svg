@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="46" height="40" viewBox="0 0 46 40">
+    <defs>
+        <path id="a" d="M6 0h40v40H6z"/>
+        <path id="b" d="M32 3.5C32 5.433 30.425 7 28.497 7H11.503A3.504 3.504 0 0 1 8 3.5V0h24v3.5z"/>
+        <path id="c" d="M32 36.5c0 1.933-1.575 3.5-3.503 3.5H11.503A3.504 3.504 0 0 1 8 36.5V33h24v3.5z"/>
+        <rect id="d" width="12" height="40" rx="6"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd">
+        <g transform="matrix(-1 0 0 1 46 0)">
+            <use fill="#FFF" xlink:href="#a"/>
+            <path stroke="#000" stroke-opacity=".1" stroke-width="2" d="M7 1h38v38H7z"/>
+        </g>
+        <g transform="matrix(-1 0 0 1 46 0)">
+            <use fill="#FFF" xlink:href="#b"/>
+            <path stroke="#000" stroke-opacity=".1" stroke-width="2" d="M31 1H9v2.5C9 4.878 10.122 6 11.503 6h16.994A2.506 2.506 0 0 0 31 3.5V1z"/>
+        </g>
+        <g transform="rotate(180 23 36.5)">
+            <use fill="#FFF" xlink:href="#c"/>
+            <path stroke="#000" stroke-opacity=".1" stroke-width="2" d="M31 34H9v2.5c0 1.378 1.122 2.5 2.503 2.5h16.994A2.506 2.506 0 0 0 31 36.5V34z"/>
+        </g>
+        <g transform="matrix(-1 0 0 1 46 0)">
+            <use fill="#FFF" xlink:href="#d"/>
+            <rect width="10" height="38" x="1" y="1" stroke="#000" stroke-opacity=".1" stroke-width="2" rx="5"/>
+        </g>
+    </g>
+</svg>

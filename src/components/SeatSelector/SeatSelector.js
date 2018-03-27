@@ -1,6 +1,6 @@
 import React from 'react';
-import seatIconBlue from '../../assets/seatIconBlue.svg';
-import arrowIconRight from '../../assets/arrow-r.svg';
+import seatIconBlue from '../../assets/icons/seat-blue-icon.svg';
+import arrowIconRight from '../../assets/icons/arrow-r.svg';
 import SeatSelectorWagon from '../SeatSelectorWagon/SeatSelectorWagon';
 import './SeatSelector.css';
 

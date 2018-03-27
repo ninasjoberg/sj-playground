@@ -16,7 +16,7 @@
   justify-content: space-between;
   align-items: center;
   margin-bottom: 10px;
-  width: 1342px;
+  width: 582px;  /*  for all wagons: 1342px */
 }
 
 .overview-wagon-image {
@@ -84,8 +84,29 @@
   height: 230px;
   display: inline-block;
   width: 1630px;
+  position: relative;
 }
 
 
+.seatmap-seat {
+  position: absolute;
+  /* transform: translate(-50%, -50%); */
+}
 
+.seatmap-seat-backwards {
+  transform: rotate(180deg);
+}
+
+.seatmap-seat-inner {
+  position: relative;
+}
+
+.seatmap-number {
+  position: absolute;
+  margin: 0;
+  width: 46px;
+  top: 11px;
+  left: 0;
+  text-align: center;
+}
 

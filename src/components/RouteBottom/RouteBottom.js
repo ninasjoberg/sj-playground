@@ -1,5 +1,5 @@
 import React from 'react';
-import greySeatIcon from '../../assets/greySeatIcon.svg';
+import greySeatIcon from '../../assets/icons/seat-grey-icon.svg';
 import './RouteBottom.css';
 
 const RouteBottom = () => (

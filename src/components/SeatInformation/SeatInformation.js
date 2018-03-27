@@ -1,7 +1,7 @@
 import React from 'react';
-import seatIcon from '../../assets/seatIcon.svg';
-import trainIcon from '../../assets/trainIcon.svg';
-import musicIcon from '../../assets/music.svg';
+import seatIcon from '../../assets/icons/seat-icon.svg';
+import trainIcon from '../../assets/icons/train-icon.svg';
+import musicIcon from '../../assets/icons/music.svg';
 
 import './SeatInformation.css';
 
