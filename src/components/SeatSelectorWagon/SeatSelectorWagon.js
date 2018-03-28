@@ -8,7 +8,7 @@ import seatInactive from '../../assets/seatmap/seat-inactive.svg';
 import seatAvailableImg from '../../assets/seatmap/seat-available.svg';
 import seatmapLocomotiveImg from '../../assets/seatmap/seatmap-locomotive.svg';
 import seatmapCartImg from '../../assets/seatmap/seatmap-cart.svg';
-import seatmapCartBistroImg from '../../assets/seatmap/seatmap-cart-bistro.svg';
+import seatmapCartBistroImg from '../../assets/seatmap/seatmap-cart-bistro.png';
 
 const wagons = [
   { type: 'locomotive', number: null, icon: false, selected: false, class: null, interior: seatmapLocomotiveImg, overview: overviewLocomotive, overviewWidth: '186px', width: '1000px' },
@@ -18,13 +18,6 @@ const wagons = [
   // { number: 4, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewWagon },
   { type: 'bistro', number: 5, icon: bistroIcon, selected: false, class: false, interior: seatmapCartBistroImg, overview: overviewWagon, width: '1578px' },
   { number: 6, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewEndWagon, overviewWidth: '206px', width: '1630px' },
-];
-
-const seats = [
-  { number: 'a', side: 'ab', top: 49 },
-  { number: 'b', side: 'ab', top: 7 },
-  { number: 'c', side: 'cd', top: 139, backward: true },
-  { number: 'd', side: 'cd', top: 183, backward: true },
 ];
 
 const availableSeats = [
@@ -40,6 +33,13 @@ const standard = {
 
   abNumberOfRows: 18,
   cdNumberOfRows: 19,
+
+  seats: [
+    { number: 'a', side: 'ab', top: 49 },
+    { number: 'b', side: 'ab', top: 7 },
+    { number: 'c', side: 'cd', top: 139, backward: true },
+    { number: 'd', side: 'cd', top: 183, backward: true },
+  ],
 
   exceptionRows: [
     { number: 1,
@@ -77,10 +77,41 @@ const standard = {
 };
 
 const bistro = {
-  abOffset: 132,
-  cdOffset: 132,
   numberOfRows: 14,
-  exceptionRows: [],
+
+  seats: [
+    { number: 'a', side: 'ab', top: 49, backward: true },
+    { number: 'b', side: 'ab', top: 7, backward: true },
+    { number: 'c', side: 'cd', top: 139 },
+    { number: 'd', side: 'cd', top: 183 },
+  ],
+
+  exceptionRows: [
+    { number: 1,
+      ab: { offset: 182 },
+      cd: { offset: 182, backward: true },
+    },
+    { number: 2,
+      ab: { offset: standardSeatSpace - 2 },
+      cd: { offset: standardTableSpace },
+    },
+    { number: 3,
+      cd: { offset: standardSeatSpace },
+    },
+    { number: 7,
+      cd: { offset: 618, backward: true },
+    },
+    { number: 8,
+      ab: { offset: standardTableSpace + 4, backward: false },
+      cd: { offset: standardSeatSpace },
+    },
+    { number: 9,
+      ab: { offset: 500 },
+    },
+    { number: 10,
+      ab: { offset: standardSeatSpace },
+    },
+  ],
 };
 
 const wagonTypes = {
@@ -110,6 +141,10 @@ const SeatMapWagon = (wagon) => {
   const wagonType = wagon.type ? wagonTypes[wagon.type] : wagonTypes.standard;
 
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
+  if (wagonType === 'locomotive') {
+    return null;
+  }
+
   const w = wagon.width || '1366px';
 
   let totalAbOffset = 0;  // x value for seat absolue position
@@ -124,14 +159,12 @@ const SeatMapWagon = (wagon) => {
   // one row
   for (let rowNumber = 1; rowNumber <= numberOfRows; rowNumber++) {
 
-
-
     const exceptionRow = wagonType.exceptionRows.find((exception) => {
       return exception.number === rowNumber;
     });
 
     // one seat
-    const oneRow = seats.map((s) => {
+    const oneRow = wagonType.seats.map((s) => {
       let seat = s;
 
       if (exceptionRow && exceptionRow[s.side]) {
