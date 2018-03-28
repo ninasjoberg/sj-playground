@@ -11,19 +11,24 @@ import seatmapCartImg from '../../assets/seatmap/seatmap-cart.svg';
 import seatmapCartBistroImg from '../../assets/seatmap/seatmap-cart-bistro.png';
 
 const wagons = [
-  { type: 'locomotive', number: null, icon: false, selected: false, class: null, interior: seatmapLocomotiveImg, overview: overviewLocomotive, overviewWidth: '186px', width: '1000px' },
+  { type: 'locomotive', number: null, icon: false, selected: false, class: null, interior: seatmapLocomotiveImg, overview: overviewLocomotive, overviewWidth: 186, width: '1000px' },
   // { number: 1, icon: false, selected: false, class: '1 kl', interior: seatmapCartImg, overview: overviewWagon },
   // { number: 2, icon: false, selected: false, class: '1 kl', interior: seatmapCartImg, overview: overviewWagon },
   // { number: 3, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewWagon },
   // { number: 4, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewWagon },
   { type: 'bistro', number: 5, icon: bistroIcon, selected: false, class: false, interior: seatmapCartBistroImg, overview: overviewWagon, width: '1578px' },
-  { number: 6, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewEndWagon, overviewWidth: '206px', width: '1630px' },
+  { number: 6, icon: false, selected: false, class: false, interior: seatmapCartImg, overview: overviewEndWagon, overviewWidth: 208, width: '1630px' },
 ];
 
 const availableSeats = [
   { seat: 1, wagon: 5 },
-  { seat: 3, wagon: 6 },
-  { seat: 10, wagon: 6 },
+  { seat: 3, wagon: 5 },
+  { seat: 5, wagon: 5 },
+  { seat: 6, wagon: 5 },
+  { seat: 8, wagon: 5 },
+  { seat: 23, wagon: 5 },
+  { seat: 24, wagon: 5 },
+
 ];
 
 const standardSeatSpace = (46 + 14);
@@ -137,15 +142,17 @@ const wagonTypes = {
 };
 
 const OverviewWagon = (wagon) => {
-  const w = wagon.overviewWidth || '190px';
+  const w = `${(wagon.overviewWidth || 192)}px`;
   return (
     <div className="wagon" style={{ width: w }}>
-      <div className="wagon-heading">
-        <h3>Vagn {wagon.number}</h3>
-        { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
-        { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
+      <div className="wagon-inner">
+        <div className="wagon-heading">
+          <h3>{wagon.number ? `Vagn ${wagon.number}` : ' '}</h3>
+          { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
+          { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
+        </div>
+        <img className="overview-wagon-image" src={wagon.overview} alt="train" />
       </div>
-      <img className="overview-wagon-image" src={wagon.overview} alt="train" />
     </div>
   );
 };
@@ -183,27 +190,21 @@ const SeatMapWagon = (wagon) => {
       if (exceptionRow && exceptionRow[s.side]) {
         const exceptionSeat = exceptionRow[s.side];
         seat = { ...s, ...exceptionSeat };
-        console.log(seat)
       }
 
       if (seat.number === 'a') {
         if (seat.offset) {
           currentAbOffset = seat.offset;
         }
-
         totalAbOffset += currentAbOffset;
-
       } else if (seat.number === 'c') {
         if (seat.offset) {
           currentCdOffset = seat.offset;
         }
-
         totalCdOffset += currentCdOffset;
-
       }
 
       if (seat.noSeat) {
-        console.log("NO SEAT!")
         return null;
       }
       seatNumber += 1;
@@ -218,7 +219,7 @@ const SeatMapWagon = (wagon) => {
       const t = `${seat.top}px`;
       const c = seat.backward ? 'seatmap-seat-backwards' : ' ';
       const seatIcon = available ? seatAvailableImg : seatInactive;
-      const n = available ? seatNumber : seatNumber; //ta bort sen
+      const n = available ? seatNumber : '';
 
       return (
         <div className="seatmap-seat" style={{ top: t, left: l }}>
@@ -254,8 +255,12 @@ class seatSelectorWagon extends React.Component {
     const seatMapScroll = document.querySelector('.seatmap-scroll');
     const overviewScroll = document.querySelector('.overview-scroll');
     // add rezise listener
-    const overviewWidth = document.querySelector('.overview-container').getBoundingClientRect().width;
+    const overviewWidth = wagons.reduce((prev, wagon) => {
+      return prev + (wagon.overviewWidth || 192);
+    }, 0);
+
     const seatMapWidth = document.querySelector('.seatmap-container').getBoundingClientRect().width;
+
     const screenWidth = seatMapScroll.getBoundingClientRect().width;
     const targets = {
       leaderWidth: seatMapWidth,

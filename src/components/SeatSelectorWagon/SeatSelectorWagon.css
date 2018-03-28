@@ -1,10 +1,10 @@
 
 .overview-scroll {
   position: relative;
-  overflow: auto;
   white-space: nowrap;
-  display: flex;
-  flex-direction: column;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .overview-scroll::-webkit-scrollbar {
@@ -13,10 +13,7 @@
 
 .overview-container {
   display: flex;
-  justify-content: space-between;
-  align-items: center;
   margin-bottom: 10px;
-  width: 582px;  /*  for all wagons: 1342px */
 }
 
 .overview-wagon-image {
@@ -28,6 +25,10 @@
 }
 
 .wagon {
+  display: inline-block;
+}
+
+.wagon-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -66,15 +67,15 @@
 
 .seatmap-scroll {
   position: relative;
-  overflow: auto;
   white-space: nowrap;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
 }
 
 .seatmap-scroll::-webkit-scrollbar {
   display: none;
 }
-
-
 
 .seatmap-container {
   display: inline-block;
@@ -103,9 +104,11 @@
 
 .seatmap-number {
   position: absolute;
+  font-size: 15px;
+  font-weight: bold;
   margin: 0;
   width: 46px;
-  top: 11px;
+  top: 12px;
   left: 0;
   text-align: center;
 }
