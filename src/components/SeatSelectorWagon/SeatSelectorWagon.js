@@ -33,32 +33,45 @@ const availableSeats = [
   { seat: 10, wagon: 6 },
 ];
 
+const standardSeatSpace = (46 + 14);
+const standardTableSpace = (100);
 const standard = {
-  numberOfRows: 21, // 3 with noseats
+  numberOfRows: 19, // 3 with noseats
 
   abNumberOfRows: 18,
   cdNumberOfRows: 19,
 
-  abOffset: 208,
-  cdOffset: 172,
   exceptionRows: [
     { number: 1,
-      ab: { backward: true },
+      ab: { noSeat: true },
+      cd: { offset: 240 },
     },
     { number: 2,
-      ab: { noSeat: true },
+      ab: { offset: 262, backward: true },
+      cd: { offset: standardSeatSpace },
+    },
+    { number: 3,
+      ab: { offset: standardTableSpace },
+    },
+    { number: 4,
+      ab: { offset: standardSeatSpace },
     },
     { number: 8,
-      ab: { addOffSet: 15 }, // something like this, for walls aso
+      ab: { offset: standardSeatSpace + 16 },
+      cd: { offset: standardSeatSpace + 16 },
     },
     { number: 9,
-      cd: { noSeat: true },
+      ab: { offset: standardSeatSpace - 2 },
+      cd: { offset: standardSeatSpace - 2 },
+    },
+    { number: 14,
+      ab: { offset: standardSeatSpace + 6 },
     },
     { number: 15,
-      ab: { noSeat: true },
+      ab: { offset: standardSeatSpace - 2 },
     },
-    { number: 20,
-      cd: { noSeat: true },
+    { number: 19,
+      cd: { offset: standardTableSpace + 8, backward: false },
     },
   ],
 };
@@ -99,18 +112,19 @@ const SeatMapWagon = (wagon) => {
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
   const w = wagon.width || '1366px';
 
-  let abOffset = wagonType.abOffset;
-  let cdOffset = wagonType.cdOffset;
-  let seatNumber = 0;
+  let totalAbOffset = 0;  // x value for seat absolue position
+  let totalCdOffset = 0;
+  let currentAbOffset = 0; // about 46px, offeset between seats, higer if there is a table or first class
+  let currentCdOffset = 0;
+  let seatNumber = 0; // seat ticket number
 
   const numberOfRows = wagonType.numberOfRows;
-
 
   let allSeats = [];
   // one row
   for (let rowNumber = 1; rowNumber <= numberOfRows; rowNumber++) {
-    abOffset += (46 + 8);   // seat + 6px distance
-    cdOffset += (46 + 8);   // seat + 6px distance
+
+
 
     const exceptionRow = wagonType.exceptionRows.find((exception) => {
       return exception.number === rowNumber;
@@ -122,15 +136,28 @@ const SeatMapWagon = (wagon) => {
 
       if (exceptionRow && exceptionRow[s.side]) {
         const exceptionSeat = exceptionRow[s.side];
+        seat = { ...s, ...exceptionSeat };
+        console.log(seat)
+      }
 
-        if (exceptionSeat.addOffSet && seat.side === 'ab') {
-          abOffset += exceptionSeat.addOffSet;
+      if (seat.number === 'a') {
+        if (seat.offset) {
+          currentAbOffset = seat.offset;
         }
 
-        seat = { ...s, ...exceptionSeat };
+        totalAbOffset += currentAbOffset;
+
+      } else if (seat.number === 'c') {
+        if (seat.offset) {
+          currentCdOffset = seat.offset;
+        }
+
+        totalCdOffset += currentCdOffset;
+
       }
 
       if (seat.noSeat) {
+        console.log("NO SEAT!")
         return null;
       }
       seatNumber += 1;
@@ -139,7 +166,7 @@ const SeatMapWagon = (wagon) => {
         return seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon;
       });
 
-      const l = seat.side === 'ab' ? `${abOffset}px` : `${cdOffset}px`;
+      const l = seat.side === 'ab' ? `${totalAbOffset}px` : `${totalCdOffset}px`;
 
 
       const t = `${seat.top}px`;
