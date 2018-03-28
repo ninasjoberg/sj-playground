@@ -77,7 +77,7 @@ const standard = {
 };
 
 const bistro = {
-  numberOfRows: 14,
+  numberOfRows: 12,
 
   seats: [
     { number: 'a', side: 'ab', top: 49, backward: true },
@@ -99,17 +99,30 @@ const bistro = {
       cd: { offset: standardSeatSpace },
     },
     { number: 7,
-      cd: { offset: 618, backward: true },
+      cd: { noSeat: true },
     },
     { number: 8,
       ab: { offset: standardTableSpace + 4, backward: false },
-      cd: { offset: standardSeatSpace },
+      cd: { noSeat: true },
     },
     { number: 9,
-      ab: { offset: 500 },
+      ab: { offset: 508 },
+      cd: { offset: 500, backward: true },
     },
     { number: 10,
-      ab: { offset: standardSeatSpace },
+      ab: { offset: standardTableSpace - 8, backward: false },
+      cd: { offset: standardTableSpace - 8 },
+    },
+    { number: 11,
+      ab: { offset: standardSeatSpace - 8 },
+      cd: { offset: standardSeatSpace - 8, backward: true },
+    },
+    { number: 12,
+      ab: { offset: standardTableSpace - 8, backward: false },
+      cd: { offset: standardTableSpace - 8 },
+    },
+    { number: 13,
+      ab: { offset: standardSeatSpace + 50 },
     },
   ],
 };
