@@ -15,6 +15,7 @@ const OverviewWagon = (wagonInfo, index) => {
           { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
         </div>
         <img className="overview-wagon-image" src={wagon.overview} alt="train" />
+        <img className="overview-wagon-background-image" src={wagon.backgroundLayerImg} style={{ clip: 'rect(0px,100px,35px,50px)' }} alt="train" />
       </div>
     </div>
   );
