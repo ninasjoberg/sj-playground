@@ -1,12 +1,12 @@
 import React from 'react';
 import { wagonsOverview } from '../../constants/trainInfo';
 
-const OverviewWagon = (wagonInfo) => {
+const OverviewWagon = (wagonInfo, index) => {
   const wagon = { ...wagonsOverview[wagonInfo.type], ...wagonInfo };
   const w = `${(wagon.overviewWidth || 192)}px`;
 
   return (
-    <div className="wagon" style={{ width: w }}>
+    <div className="wagon" key={index} style={{ width: w }}>
       <div className="wagon-inner">
         <div className="wagon-heading">
           <h3>{wagon.number ? `Vagn ${wagon.number}` : ' '}</h3>

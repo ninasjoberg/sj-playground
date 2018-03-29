@@ -4,7 +4,7 @@ import seatInactive from '../../assets/seatmap/seat-inactive.svg';
 import seatAvailableImg from '../../assets/seatmap/seat-available.svg';
 
 
-const SeatMapWagon = (wagonInfo, availableSeats) => {
+const SeatMapWagon = (wagonInfo, availableSeats, index) => {
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
@@ -18,18 +18,16 @@ const SeatMapWagon = (wagonInfo, availableSeats) => {
   let currentCdOffset = 0;
   let seatNumber = 0; // seat ticket number
 
-  const numberOfRows = wagon.numberOfRows;
 
-  let allSeats = [];
-  // one row
-  for (let rowNumber = 1; rowNumber <= numberOfRows; rowNumber++) {
+  const rowsArray = new Array(wagon.numberOfRows).fill({});
 
-    const exceptionRow = wagon.exceptionRows.find((exception) => {
-      return exception.number === rowNumber;
-    });
+  const allSeats = rowsArray.map((rowNumber, i) => {
+    const exceptionRow = wagon.exceptionRows.find((exception) => (
+      exception.number === (i + 1)
+    ));
 
     // one seat
-    const oneRow = wagon.seats.map( (s) => {
+    return wagon.seats.map((s) => {
       let seat = s;
 
       if (exceptionRow && exceptionRow[s.side]) {
@@ -54,9 +52,9 @@ const SeatMapWagon = (wagonInfo, availableSeats) => {
       }
       seatNumber += 1;
 
-      const available = availableSeats.find((availableSeat) => {
-        return seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon;
-      });
+      const available = availableSeats.find((availableSeat) => (
+        seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon
+      ));
 
       const left = seat.side === 'ab' ? totalAbOffset : totalCdOffset;
       const top = seat.top;
@@ -66,7 +64,7 @@ const SeatMapWagon = (wagonInfo, availableSeats) => {
       const selected = false; // todo click seat to select
 
       return (
-        <div className="seatmap-seat" style={{ top, left }}>
+        <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }}>
           <div className="seatmap-seat-inner">
             <img className={c} src={seatIcon} alt="seatIcon" />
             { selected && <span className="seatmap-number">{seatNumber}</span> }
@@ -74,12 +72,11 @@ const SeatMapWagon = (wagonInfo, availableSeats) => {
         </div>
       );
     });
-    allSeats = allSeats.concat(oneRow);
-  }
+  });
 
 
   return (
-    <div className={cl} style={{ width: wagon.width }}>
+    <div className={cl} key={index} style={{ width: wagon.width }}>
       {allSeats}
       <img className="train-img"src={wagon.interior} alt="seatIcon"></img>
     </div>

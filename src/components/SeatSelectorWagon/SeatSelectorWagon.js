@@ -17,9 +17,9 @@ class seatSelectorWagon extends React.Component {
     const seatMapScroll = document.querySelector('.seatmap-scroll');
     const overviewScroll = document.querySelector('.overview-scroll');
     // add rezise listener
-    const overviewWidth = wagons.reduce((prev, wagon) => {
-      return prev + (wagon.overviewWidth || 192);
-    }, 0);
+    const overviewWidth = wagons.reduce((prev, wagon) => (
+      prev + (wagon.overviewWidth || 192))
+    , 0);
 
     const seatMapWidth = document.querySelector('.seatmap-container').getBoundingClientRect().width;
     const screenWidth = seatMapScroll.getBoundingClientRect().width;
@@ -45,12 +45,12 @@ class seatSelectorWagon extends React.Component {
       <div>
         <div className="overview-scroll">
           <div className="overview-container">
-            { wagons.map((w) => OverviewWagon(w)) }
+            { wagons.map((w, index) => OverviewWagon(w, index)) }
           </div>
         </div>
         <div className="seatmap-scroll">
           <div className="seatmap-container">
-            { wagons.map((w) => SeatMapWagon(w, availableSeats)) }
+            { wagons.map((w, index) => SeatMapWagon(w, availableSeats, index)) }
           </div>
         </div>
       </div>
