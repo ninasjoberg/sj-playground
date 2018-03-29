@@ -8,6 +8,10 @@ import './SeatMapWagon.css';
 const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSeatClick }) => {
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
+  const allIcons = wagon.icons ? wagon.icons.map((icon) => (
+    <img src={icon.src} style={{ top: icon.top ? icon.top : 115, left: icon.left }} alt="icon" className="seatmap-icon" />
+  )) : '';
+
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
   if (wagon === 'locomotive') {
     return null;
@@ -53,6 +57,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
       const seatIdentifier = {
         seat: seatNumber,
         wagon: wagon.number,
+        type: wagon.type,
       };
 
       const available = availableSeats.find((availableSeat) => (
@@ -72,12 +77,12 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
       let seatIcon = available ? seatAvailableImg : seatInactive;
       seatIcon = selected ? selectedSeatImg : seatIcon;
 
-      const onClick = available ? () => handleSeatClick(seatIdentifier) : false;
+      const onClick = available ? () => handleSeatClick(seatIdentifier) : () => {};
 
       return (
-        <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }} >
+        <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }} onClick={onClick} role="button">
           <div className="seatmap-seat-inner">
-            <img className={c} src={seatIcon} alt="seatIcon" data-seatnumber={seatNumber} onClick={onClick} />
+            <img className={c} src={seatIcon} alt="seatIcon" />
             { selected && <span className="seatmap-number">{seatNumber}</span> }
           </div>
         </div>
@@ -89,6 +94,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
   return (
     <div className={cl} key={index} style={{ width: wagon.width }}>
       {allSeats}
+      {allIcons}
       <img className="train-img"src={wagon.interior} alt="seatIcon"></img>
     </div>
   );

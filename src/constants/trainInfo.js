@@ -1,16 +1,19 @@
 import bistroIcon from '../assets/icons/bistro.svg';
+import musicIcon from '../assets/icons/music.svg';
 import overviewLocomotive from '../assets/overview/loc.png';
 import overviewWagon from '../assets/overview/wagon.png';
 import overviewEndWagon from '../assets/overview/endwagon.png';
+import overviewBlueWagon from '../assets/overview/bluewagon.png';
+import overviewBlueEndWagon from '../assets/overview/blueendwagon.png';
 import seatmapLocomotiveImg from '../assets/seatmap/seatmap-locomotive.svg';
 import seatmapCartImg from '../assets/seatmap/seatmap-cart.svg';
 import seatmapCartBistroImg from '../assets/seatmap/seatmap-cart-bistro.png';
 
 
 const wagonsOverview = {
-  locomotive: { type: 'locomotive', icon: false, selected: false, class: null, overview: overviewLocomotive, overviewWidth: 186 },
-  bistro: { type: 'bistro', icon: bistroIcon, selected: false, class: false, overview: overviewWagon },
-  standard: { type: 'standard', selected: false, class: false, overview: overviewEndWagon, overviewWidth: 208 },
+  locomotive: { type: 'locomotive', icon: false, selected: false, class: null, overview: overviewLocomotive, backgroundLayerImg: overviewLocomotive, overviewWidth: 186 },
+  bistro: { type: 'bistro', icon: bistroIcon, selected: false, class: false, overview: overviewWagon, backgroundLayerImg: overviewBlueWagon },
+  standard: { type: 'standard', selected: false, class: false, overview: overviewEndWagon, backgroundLayerImg: overviewBlueEndWagon, overviewWidth: 208 },
   tail: { type: 'tail' }, // todo: set correct image and so on
 };
 
@@ -78,6 +81,10 @@ const bistro = {
   width: 1578,
   interior: seatmapCartBistroImg,
   numberOfRows: 12,
+  icons: [
+    { src: musicIcon, left: 400 },
+    { src: musicIcon, left: 1285 },
+  ],
 
   seats: [
     { number: 'a', side: 'ab', top: 49, backward: true },

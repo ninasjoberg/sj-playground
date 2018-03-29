@@ -7,14 +7,6 @@ import OverviewWagon from '../OverviewWagon/OverviewWagon';
 
 class seatSelectorWagon extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      selectedSeat: availableSeats.find((availableSeat) => availableSeat.preSelected),
-    };
-    this.handleSeatClick = this.handleSeatClick.bind(this);
-  }
-
   componentDidMount() {
     const seatMapScroll = document.querySelector('.seatmap-scroll');
     const overviewScroll = document.querySelector('.overview-scroll');
@@ -33,19 +25,13 @@ class seatSelectorWagon extends React.Component {
       screenWidth,
     };
     seatMapScroll.addEventListener('scroll', () => this.handleScroll(targets));
-    targets.leaderScroll.scrollTo(1000, 0); // to show the wagon with avaliable seats from start, 1000 magic number change to real value based on available seats later on
+    targets.leaderScroll.scrollTo(2800, 0); // to show the wagon with avaliable seats from start, 1000 magic number change to real value based on available seats later on
   }
 
   handleScroll = (targets) => {
     const scrollPercent = targets.leaderScroll.scrollLeft / (targets.leaderWidth - targets.screenWidth);
     const scrollTarget = scrollPercent * (targets.followerWidth - targets.screenWidth);
     targets.followerScroll.scrollTo(scrollTarget, 0);
-  }
-
-  handleSeatClick = (seat) => {
-    this.setState({
-      selectedSeat: seat,
-    });
   }
 
   render() {
@@ -63,8 +49,8 @@ class seatSelectorWagon extends React.Component {
                 wagonInfo={w}
                 availableSeats={availableSeats}
                 index={index}
-                selectedSeat={this.state.selectedSeat}
-                handleSeatClick={this.handleSeatClick}
+                selectedSeat={this.props.selectedSeat}
+                handleSeatClick={this.props.handleSeatClick}
               />))
             }
           </div>

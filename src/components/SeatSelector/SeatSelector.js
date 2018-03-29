@@ -4,7 +4,7 @@ import arrowIconRight from '../../assets/icons/arrow-r.svg';
 import SeatSelectorWagon from '../SeatSelectorWagon/SeatSelectorWagon';
 import './SeatSelector.css';
 
-const SeatSelector = () => (
+const SeatSelector = (props) => (
   <div className="seat-selector-container">
     <div className="seat-selector-menu">
       <a href="" className="seat-icon-div">
@@ -16,7 +16,7 @@ const SeatSelector = () => (
         <img className="arrow-icon"src={arrowIconRight} alt="seatIcon"></img>
       </div>
     </div>
-    <SeatSelectorWagon />
+    <SeatSelectorWagon handleSeatClick={props.handleSeatClick} selectedSeat={props.selectedSeat}/>
   </div>
 );
 
