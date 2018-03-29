@@ -12,15 +12,10 @@ class seatSelectorWagon extends React.Component {
     this.state = {
       selectedSeat: availableSeats.find((availableSeat) => availableSeat.preSelected),
     };
+    this.handleSeatClick = this.handleSeatClick.bind(this);
   }
 
   componentDidMount() {
-
-    // const selectedSeat = availableSeats.find((availableSeat) => {
-    //   return availableSeat.preSelected;
-    // });
-    // this.setState({ selectedSeat });
-
     const seatMapScroll = document.querySelector('.seatmap-scroll');
     const overviewScroll = document.querySelector('.overview-scroll');
     // add rezise listener
@@ -47,6 +42,12 @@ class seatSelectorWagon extends React.Component {
     targets.followerScroll.scrollTo(scrollTarget, 0);
   }
 
+  handleSeatClick = (seat) => {
+    this.setState({
+      selectedSeat: seat,
+    });
+  }
+
   render() {
     return (
       <div>
@@ -57,7 +58,15 @@ class seatSelectorWagon extends React.Component {
         </div>
         <div className="seatmap-scroll">
           <div className="seatmap-container">
-            { wagons.map((w, index) => SeatMapWagon(w, availableSeats, index, this.state.selectedSeat)) }
+            { wagons.map((w, index) => (
+              <SeatMapWagon
+                wagonInfo={w}
+                availableSeats={availableSeats}
+                index={index}
+                selectedSeat={this.state.selectedSeat}
+                handleSeatClick={this.handleSeatClick}
+              />))
+            }
           </div>
         </div>
       </div>
