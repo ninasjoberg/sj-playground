@@ -1,0 +1,31 @@
+  .seatmap-wagon {
+    height: 230px;
+    display: inline-block;
+    width: 1630px;
+    position: relative;
+  }
+
+  .seatmap-seat {
+    position: absolute;
+    /* transform: translate(-50%, -50%); */
+  }
+
+  .seatmap-seat-backwards {
+    transform: rotate(180deg);
+  }
+
+  .seatmap-seat-inner {
+    position: relative;
+  }
+
+  .seatmap-number {
+    position: absolute;
+    font-size: 15px;
+    font-weight: bold;
+    margin: 0;
+    width: 46px;
+    top: 12px;
+    left: 0;
+    text-align: center;
+    color: #FFF;
+  }

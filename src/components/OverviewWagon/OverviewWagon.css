@@ -1,0 +1,49 @@
+
+.overview-wagon-image {
+    height: 34px;
+  }
+
+  .overview-wagon-image-colored {
+    clip: rect(0px,700px,35px,650px)
+  }
+
+  .wagon {
+    display: inline-block;
+  }
+
+  .wagon-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+  }
+
+  .wagon-heading {
+    display: flex;
+    height: 40px;
+    align-items: center;
+  }
+
+  .wagon-heading h3 {
+    font-size: 16px;
+    text-align: center;
+  }
+
+  .wagon-class {
+    font-size: 16px;
+    font-weight: 100;
+  }
+
+  .wagon-icon {
+    display: flex;
+    align-items: center;
+  }
+
+  .wagon-icon::before {
+    content: "";
+    background-color: #f4f4ee;
+    width: 5px;
+    height: 5px;
+    border-radius: 5px;
+    margin: 0 6px;
+  }

@@ -1,5 +1,6 @@
 import React from 'react';
 import { wagonsOverview } from '../../constants/trainInfo';
+import './OverviewWagon.css';
 
 const OverviewWagon = (wagonInfo, index) => {
   const wagon = { ...wagonsOverview[wagonInfo.type], ...wagonInfo };

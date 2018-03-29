@@ -10,10 +10,17 @@ class seatSelectorWagon extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      selectedSeat: availableSeats.find((availableSeat) => availableSeat.preSelected),
     };
   }
 
   componentDidMount() {
+
+    // const selectedSeat = availableSeats.find((availableSeat) => {
+    //   return availableSeat.preSelected;
+    // });
+    // this.setState({ selectedSeat });
+
     const seatMapScroll = document.querySelector('.seatmap-scroll');
     const overviewScroll = document.querySelector('.overview-scroll');
     // add rezise listener
@@ -50,7 +57,7 @@ class seatSelectorWagon extends React.Component {
         </div>
         <div className="seatmap-scroll">
           <div className="seatmap-container">
-            { wagons.map((w, index) => SeatMapWagon(w, availableSeats, index)) }
+            { wagons.map((w, index) => SeatMapWagon(w, availableSeats, index, this.state.selectedSeat)) }
           </div>
         </div>
       </div>

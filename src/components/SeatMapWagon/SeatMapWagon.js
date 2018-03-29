@@ -2,9 +2,10 @@ import React from 'react';
 import { wagonsSeatmap } from '../../constants/trainInfo';
 import seatInactive from '../../assets/seatmap/seat-inactive.svg';
 import seatAvailableImg from '../../assets/seatmap/seat-available.svg';
+import selectedSeatImg from '../../assets/seatmap/seat-selected.svg';
+import './SeatMapWagon.css';
 
-
-const SeatMapWagon = (wagonInfo, availableSeats, index) => {
+const SeatMapWagon = (wagonInfo, availableSeats, index, selectedSeat) => {
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';
@@ -56,12 +57,18 @@ const SeatMapWagon = (wagonInfo, availableSeats, index) => {
         seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon
       ));
 
+
       const left = seat.side === 'ab' ? totalAbOffset : totalCdOffset;
       const top = seat.top;
       const c = seat.backward ? 'seatmap-seat-backwards' : ' ';
-      const seatIcon = available ? seatAvailableImg : seatInactive;
 
-      const selected = false; // todo click seat to select
+      let selected = false;
+      if ((selectedSeat.wagon === wagon.number) && (selectedSeat.seat === seatNumber)) {
+        selected = true;
+      }
+
+      let seatIcon = available ? seatAvailableImg : seatInactive;
+      seatIcon = selected ? selectedSeatImg : seatIcon;
 
       return (
         <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }}>
