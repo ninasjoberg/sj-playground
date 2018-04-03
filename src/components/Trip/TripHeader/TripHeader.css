@@ -1,0 +1,36 @@
+
+
+.route-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.route-container::after {
+    content: "";
+    width: 0px;
+    height: 0px;
+    border-top: solid 10px #f4f4ee;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    margin: 0 auto;
+    position: relative;
+    z-index: 5;
+}
+
+
+.route-box {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f4f4ee;
+    border-radius: 8px 8px 0 0 ;
+    height: 62px;
+    margin: 0 12px;
+}
+
+.route {
+    font-size: 18px;
+    text-align: center;
+    font-weight: bold;
+}

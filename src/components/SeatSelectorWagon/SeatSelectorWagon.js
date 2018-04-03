@@ -1,11 +1,11 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import './SeatSelectorWagon.css';
 import { wagons, availableSeats } from '../../data/tripInfo';
 import SeatMapWagon from '../SeatMapWagon/SeatMapWagon';
 import OverviewWagon from '../OverviewWagon/OverviewWagon';
 
-
-class seatSelectorWagon extends React.Component {
+class SeatSelectorWagon extends React.Component {
 
   componentDidMount() {
     const seatMapScroll = document.querySelector('.seatmap-scroll');
@@ -60,4 +60,10 @@ class seatSelectorWagon extends React.Component {
     );
   }
 }
-export default seatSelectorWagon;
+
+const mapStateToProps = (state) => ({
+  selectedSeats: state.selectedSeats,
+});
+
+export default connect(mapStateToProps)(SeatSelectorWagon);
+
