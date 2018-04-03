@@ -16,7 +16,7 @@ const SeatSelector = (props) => (
         <img className="arrow-icon"src={arrowIconRight} alt="seatIcon"></img>
       </div>
     </div>
-    <SeatSelectorWagon handleSeatClick={props.handleSeatClick} selectedSeat={props.selectedSeat}/>
+    <SeatSelectorWagon {...props} />
   </div>
 );
 

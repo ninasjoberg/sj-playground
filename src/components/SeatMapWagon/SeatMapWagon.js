@@ -5,7 +5,7 @@ import seatAvailableImg from '../../assets/seatmap/seat-available.svg';
 import selectedSeatImg from '../../assets/seatmap/seat-selected.svg';
 import './SeatMapWagon.css';
 
-const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSeatClick }) => {
+const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSeatClick, route }) => {
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
   const allIcons = wagon.icons ? wagon.icons.map((icon) => (
@@ -77,7 +77,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
       let seatIcon = available ? seatAvailableImg : seatInactive;
       seatIcon = selected ? selectedSeatImg : seatIcon;
 
-      const onClick = available ? () => handleSeatClick(seatIdentifier) : () => {};
+      const onClick = available ? () => handleSeatClick(seatIdentifier, route) : () => {};
 
       return (
         <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }} onClick={onClick} role="button">

@@ -51,6 +51,7 @@ class seatSelectorWagon extends React.Component {
                 index={index}
                 selectedSeat={this.props.selectedSeat}
                 handleSeatClick={this.props.handleSeatClick}
+                route={this.props.route}
               />))
             }
           </div>

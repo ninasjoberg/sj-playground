@@ -1,0 +1,23 @@
+.continue-background {
+    background-color: #f4f4ee;
+    padding: 20px;
+}
+
+.continue-button {
+    margin: auto;
+    min-height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #1a883d;
+    width: 100%;
+    padding: 9px 10px 6px 20px;
+    color: #fff;
+    border-bottom: solid 3px #156e31;
+    font-weight: 600;
+    letter-spacing: 0.4px;
+}
+
+.continue-arrow {
+    width: 32px;
+}
