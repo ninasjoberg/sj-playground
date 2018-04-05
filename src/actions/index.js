@@ -1,5 +1,9 @@
-export const loadRouteInitialData = (routes) => ({
-  type: 'ADD_INITIAL_ROUTE',
-  routes,
+export const changeSeat = (selectedSeat) => ({
+  type: 'CHANGE_SEAT',
+  selectedSeat,
+});
+
+export const proceedButtonAction = () => ({
+  type: 'PROCEED_BUTTON',
 });
 

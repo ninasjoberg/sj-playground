@@ -1,15 +1,27 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import continueArrow from '../../assets/icons/continueArrow.svg';
 import './ProceedButton.css';
+import { proceedButtonAction } from '../../actions';
 
-const ProceedButton = ({ handleProceedClick }) => {
-  return (
-    <div className="proceed-background">
-      <button className="proceed-button" onClick={handleProceedClick}>Välj plats för återresa
-        <img className="proceed-arrow" src={continueArrow} alt="arrow"></img>
-      </button>
-    </div>
-  );
+const handleProceedClick = (removeProceedButton) => {
+  const returnTrip = document.getElementById('trip1');
+  console.log(returnTrip);
+  window.scrollTo(0, 300);
+  removeProceedButton();
 };
 
-export default ProceedButton;
+const ProceedButton = ({ removeProceedButton }) => (
+  <div className="proceed-background">
+    <button className="proceed-button" onClick={() => handleProceedClick(removeProceedButton)}>Välj plats för återresa
+      <img className="proceed-arrow" src={continueArrow} alt="arrow"></img>
+    </button>
+  </div>
+);
+
+const mapDispatchToProps = (dispatch) => ({
+  removeProceedButton: () => { dispatch(proceedButtonAction()); },
+});
+
+export default connect('', mapDispatchToProps)(ProceedButton);
+

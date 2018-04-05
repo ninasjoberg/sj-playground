@@ -13,7 +13,7 @@
     border-top: solid 10px #f4f4ee;
     border-left: solid 10px transparent;
     border-right: solid 10px transparent;
-    margin: 0 auto;
+    margin: 0 auto -8px auto;
     position: relative;
     z-index: 5;
 }

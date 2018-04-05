@@ -8,9 +8,9 @@ const Trip = (props) => {
   const { from, to, departureId } = props.trip;
 
   return (
-    <div className="trip">
+    <div className="trip" id={`trip${departureId}`}>
       <TripHeader from={from} to={to} />
-      {/* <SeatSelector departureId={departureId} /> */}
+      <SeatSelector departureId={departureId} />
       <TripFooter departureId={departureId} />
     </div>
   )

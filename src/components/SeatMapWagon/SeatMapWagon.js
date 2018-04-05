@@ -1,11 +1,15 @@
 import React from 'react';
+import { connect } from 'react-redux';
 import { wagonsSeatmap } from '../../constants/trainInfo';
 import seatInactive from '../../assets/seatmap/seat-inactive.svg';
 import seatAvailableImg from '../../assets/seatmap/seat-available.svg';
 import selectedSeatImg from '../../assets/seatmap/seat-selected.svg';
 import './SeatMapWagon.css';
+import { changeSeat } from '../../actions';
 
-const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSeatClick, route }) => {
+const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, handleSeatClick, route, departure }) => {
+  const selectedSeat = userSelectedSeat || departure.preSelectedSeat;
+
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
   const allIcons = wagon.icons ? wagon.icons.map((icon) => (
@@ -55,9 +59,9 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
       const seatNumber = seatNumberIterator;
 
       const seatIdentifier = {
-        seat: seatNumber,
-        wagon: wagon.number,
-        type: wagon.type,
+        seatId: seatNumber,
+        wagonId: wagon.number,
+        departureId: departure.id,
       };
 
       const available = availableSeats.find((availableSeat) => (
@@ -70,14 +74,14 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
       const c = seat.backward ? 'seatmap-seat-backwards' : ' ';
 
       let selected = false;
-      if ((selectedSeat.wagon === wagon.number) && (selectedSeat.seat === seatNumber)) {
+      if ((selectedSeat.wagonId === wagon.number) && (selectedSeat.seatId === seatNumber)) {
         selected = true;
       }
 
       let seatIcon = available ? seatAvailableImg : seatInactive;
       seatIcon = selected ? selectedSeatImg : seatIcon;
 
-      const onClick = available ? () => handleSeatClick(seatIdentifier, route) : () => {};
+      const onClick = available ? () => handleSeatClick(seatIdentifier) : () => {};
 
       return (
         <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }} onClick={onClick} role="button">
@@ -100,4 +104,13 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, selectedSeat, handleSe
   );
 };
 
-export default SeatMapWagon;
+const mapStateToProps = (state, ownProps) => ({
+  userSelectedSeat: state.journey.userSelectedSeats.find((s) => (s.departureId === ownProps.departureId)),
+  departure: state.departures.find((d) => (d.id === ownProps.departureId)),
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  handleSeatClick: (selectedSeat) => { dispatch(changeSeat(selectedSeat)); },
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(SeatMapWagon);

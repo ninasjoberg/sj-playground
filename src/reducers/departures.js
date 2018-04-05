@@ -43,7 +43,7 @@ const initialState = [
     ],
     preSelectedSeat: {
       departureId: 1,
-      wagonId: 2,
+      wagonId: 1,
       seatId: 5,
     },
   },

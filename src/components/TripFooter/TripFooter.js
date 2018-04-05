@@ -36,7 +36,7 @@ const TripFooter = ({ userSelectedSeat, departure }) => {
 };
 
 const mapStateToProps = (state, ownProps) => ({
-  userSelectedSeat: state.journey.selectedSeats.find((s) => (s.departureId === ownProps.departureId)),
+  userSelectedSeat: state.journey.userSelectedSeats.find((s) => (s.departureId === ownProps.departureId)),
   departure: state.departures.find((d) => (d.id === ownProps.departureId)),
 });
 

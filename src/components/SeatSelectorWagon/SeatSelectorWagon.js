@@ -1,5 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
 import './SeatSelectorWagon.css';
 import { wagons, availableSeats } from '../../data/tripInfo';
 import SeatMapWagon from '../SeatMapWagon/SeatMapWagon';
@@ -49,9 +48,10 @@ class SeatSelectorWagon extends React.Component {
                 wagonInfo={w}
                 availableSeats={availableSeats}
                 index={index}
-                selectedSeat={this.props.selectedSeat}
-                handleSeatClick={this.props.handleSeatClick}
+                // selectedSeat={this.props.selectedSeats}
+                // handleSeatClick={this.props.handleSeatClick}
                 route={this.props.route}
+                departureId={this.props.departureId}
               />))
             }
           </div>
@@ -61,9 +61,10 @@ class SeatSelectorWagon extends React.Component {
   }
 }
 
-const mapStateToProps = (state) => ({
-  selectedSeats: state.selectedSeats,
-});
+// const mapStateToProps = (state) => ({
+//   selectedSeats: state.selectedSeats,
+// });
 
-export default connect(mapStateToProps)(SeatSelectorWagon);
+// export default connect(mapStateToProps)(SeatSelectorWagon);
 
+export default SeatSelectorWagon;
