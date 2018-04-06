@@ -1,3 +1,7 @@
+.seat-selector-container {
+  transition: 3s;
+}
+
 .seat-selector-menu {
   display: flex;
   align-items: center;

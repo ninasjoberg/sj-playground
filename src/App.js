@@ -4,7 +4,6 @@ import './App.css';
 import Header from './components/Header';
 import Title from './components/Title/Title';
 import Trip from './components/Trip/Trip';
-import { availableSeats } from './data/tripInfo';
 import Footer from './components/Footer/Footer';
 import ContinueButton from './components/ContinueButton/ContinueButton';
 import ProceedButton from './components/ProceedButton/ProceedButton';

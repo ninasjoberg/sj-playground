@@ -5,9 +5,6 @@ import './ProceedButton.css';
 import { proceedButtonAction } from '../../actions';
 
 const handleProceedClick = (removeProceedButton) => {
-  const returnTrip = document.getElementById('trip1');
-  console.log(returnTrip);
-  window.scrollTo(0, 300);
   removeProceedButton();
 };
 

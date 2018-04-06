@@ -14,6 +14,7 @@ const initialState = {
   userSelectedSeats: [
   ],
   proceedButton: false,
+  showDepartureId: 0,
 };
 
 export default function journey(state = initialState, action) {
@@ -31,8 +32,17 @@ export default function journey(state = initialState, action) {
       return {
         ...state,
         proceedButton: false,
+        showDepartureId: 1,
       };
     }
+
+    case 'TOGGLE_SHOW_SEATMAP': {
+      return {
+        ...state,
+        showDepartureId: action.departureId,
+      };
+    }
+
     default:
       return state;
   }

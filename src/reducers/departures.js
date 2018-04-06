@@ -8,7 +8,7 @@ const initialState = [
       { seat: 7, wagon: 1 },
       { seat: 5, wagon: 2 },
       { seat: 6, wagon: 2 },
-      { seat: 8, wagon: 2 },
+      { seat: 12, wagon: 2 },
       { seat: 23, wagon: 2 },
       { seat: 24, wagon: 2 },
     ],
@@ -20,7 +20,7 @@ const initialState = [
     preSelectedSeat: {
       departureId: 0,
       wagonId: 2,
-      seatId: 6,
+      seatId: 12,
     },
   },
   {
