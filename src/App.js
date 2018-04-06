@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './App.css';
-import Header from './components/Header';
+import Header from './components/Header/Header';
 import Title from './components/Title/Title';
 import Trip from './components/Trip/Trip';
 import Footer from './components/Footer/Footer';

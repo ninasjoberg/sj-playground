@@ -9,39 +9,39 @@
   height: 34px;
 }
 
-.wagon {
+.overview-wagon {
   display: inline-block;
 }
 
-.wagon-inner {
+.overview-wagon-inner {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: flex-end;
 }
 
-.wagon-heading {
+.overview-wagon-heading {
   display: flex;
   height: 40px;
   align-items: center;
 }
 
-.wagon-heading h3 {
+.overview-wagon-heading h3 {
   font-size: 16px;
   text-align: center;
 }
 
-.wagon-class {
+.overview-wagon-class {
   font-size: 16px;
   font-weight: 100;
 }
 
-.wagon-icon {
+.overview-wagon-icon {
   display: flex;
   align-items: center;
 }
 
-.wagon-icon::before {
+.overview-wagon-icon::before {
   content: "";
   background-color: #f4f4ee;
   width: 5px;

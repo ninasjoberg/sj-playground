@@ -7,13 +7,13 @@ import selectedSeatImg from '../../assets/seatmap/seat-selected.svg';
 import './SeatMapWagon.css';
 import { changeSeat } from '../../actions';
 
-const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, handleSeatClick, route, departure }) => {
+const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, handleSeatClick, departure }) => {
   const selectedSeat = userSelectedSeat || departure.preSelectedSeat;
 
   const wagon = { ...wagonInfo, ...wagonsSeatmap[wagonInfo.type] };
 
-  const allIcons = wagon.icons ? wagon.icons.map((icon) => (
-    <img src={icon.src} style={{ top: icon.top ? icon.top : 115, left: icon.left }} alt="icon" className="seatmap-icon" />
+  const allIcons = wagon.icons ? wagon.icons.map((icon, i) => (
+    <img src={icon.src} style={{ top: icon.top ? icon.top : 115, left: icon.left }} alt="icon" className="seatmap-icon" key={`icon${i}`} />
   )) : '';
 
   const cl = wagon.type === 'locomotive' ? `seatmap-wagon ${wagon.type}` : 'seatmap-wagon';

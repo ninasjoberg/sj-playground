@@ -7,7 +7,6 @@
 
   .seatmap-seat {
     position: absolute;
-    /* transform: translate(-50%, -50%); */
   }
 
   .seatmap-seat-backwards {

@@ -1,9 +1,9 @@
 import React from 'react';
-import MenuButton from './MenuButton';
+import MenuButton from '../MenuButton/MenuButton';
 import './Header.css';
-import logo from '../assets/logo.svg';
-import user from '../assets/icons/user.svg';
-import menuIcon from '../assets/icons/menu-button.svg';
+import logo from '../../assets/logo.svg';
+import user from '../../assets/icons/user.svg';
+import menuIcon from '../../assets/icons/menu-button.svg';
 
 const Header = () => (
   <div className="header-container">

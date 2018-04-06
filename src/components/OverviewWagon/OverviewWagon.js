@@ -7,12 +7,12 @@ const OverviewWagon = (wagonInfo, index) => {
   const w = `${(wagon.overviewWidth || 192)}px`;
 
   return (
-    <div className="wagon" key={index} style={{ width: w }}>
-      <div className="wagon-inner">
-        <div className="wagon-heading">
+    <div className="overview-wagon" key={index} style={{ width: w }}>
+      <div className="overview-wagon-inner">
+        <div className="overview-wagon-heading">
           <h3>{wagon.number ? `Vagn ${wagon.number}` : ' '}</h3>
-          { wagon.class && <span className="wagon-icon"><h3 className="wagon-class">{wagon.class}</h3></span> }
-          { wagon.icon && <span className="wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
+          { wagon.class && <span className="overview-wagon-icon"><h3 className="overview-wagon-class">{wagon.class}</h3></span> }
+          { wagon.icon && <span className="overview-wagon-icon"><img src={wagon.icon} alt="seatIcon"></img></span> }
         </div>
         <img className="overview-wagon-image" src={wagon.overview} alt="train" />
         {/* <img className="overview-wagon-background-image" src={wagon.backgroundLayerImg} style={{ clip: 'rect(0px,100px,35px,50px)' }} alt="train" /> */}

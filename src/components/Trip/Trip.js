@@ -3,9 +3,8 @@ import { connect } from 'react-redux';
 import './Trip.css';
 import TripHeader from './TripHeader/TripHeader';
 import SeatSelector from '../SeatSelector/SeatSelector';
-import TripFooter from '../TripFooter/TripFooter';
+import TripFooter from './TripFooter/TripFooter';
 import { toggleShowSeatMap } from '../../actions';
-
 
 class Trip extends React.Component {
   constructor(props) {
@@ -29,7 +28,6 @@ class Trip extends React.Component {
     }
   }
 
-
   render() {
     const { from, to, departureId } = this.props.trip;
     const { showDepartureId } = this.props;
@@ -48,10 +46,8 @@ const mapStateToProps = (state) => ({
   showDepartureId: state.journey.showDepartureId,
 });
 
-
 const mapDispatchToProps = (dispatch) => ({
   toggleSeatMap: (departureId) => { dispatch((toggleShowSeatMap(departureId))); },
 });
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(Trip);

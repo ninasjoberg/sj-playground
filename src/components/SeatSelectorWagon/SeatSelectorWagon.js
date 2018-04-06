@@ -55,10 +55,10 @@ class SeatSelectorWagon extends React.Component {
           <div className="seatmap-container">
             { wagons.map((w, index) => (
               <SeatMapWagon
+                key={`wagon${index}`}
                 wagonInfo={w}
                 availableSeats={availableSeats}
                 index={index}
-                route={this.props.route}
                 departureId={this.props.departureId}
               />))
             }
@@ -74,5 +74,3 @@ const mapStateToProps = (state, ownProps) => ({
 });
 
 export default connect(mapStateToProps)(SeatSelectorWagon);
-
-//export default SeatSelectorWagon;
