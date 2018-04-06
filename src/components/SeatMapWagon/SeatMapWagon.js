@@ -84,7 +84,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, hand
       const onClick = available ? () => handleSeatClick(seatIdentifier) : () => {};
 
       return (
-        <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} style={{ top, left }} onClick={onClick} role="button">
+        <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} data-seat-id={seatNumber} data-wagon-id={wagon.number} style={{ top, left }} onClick={onClick} role="button">
           <div className="seatmap-seat-inner">
             <img className={c} src={seatIcon} alt="seatIcon" />
             { selected && <span className="seatmap-number">{seatNumber}</span> }
