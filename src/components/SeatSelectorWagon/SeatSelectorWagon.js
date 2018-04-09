@@ -1,14 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import './SeatSelectorWagon.css';
-import { wagons, availableSeats } from '../../data/tripInfo';
 import SeatMapWagon from '../SeatMapWagon/SeatMapWagon';
 import OverviewWagon from '../OverviewWagon/OverviewWagon';
 
 class SeatSelectorWagon extends React.Component {
 
   componentWillMount() {
-    const overviewWidth = wagons.reduce((prev, wagon) => (
+    const overviewWidth = this.props.departure.wagons.reduce((prev, wagon) => (
       prev + (wagon.overviewWidth || 192))
     , 0);
     this.overviewWidth = overviewWidth;
@@ -44,20 +43,22 @@ class SeatSelectorWagon extends React.Component {
   }
 
   render() {
+    const { departure } = this.props;
+
     return (
       <div>
         <div className="overview-scroll">
           <div className="overview-container" style={{ width: this.overviewWidth }}>
-            { wagons.map((w, index) => OverviewWagon(w, index)) }
+            { departure.wagons.map((w, index) => OverviewWagon(w, index)) }
           </div>
         </div>
         <div className="seatmap-scroll">
           <div className="seatmap-container">
-            { wagons.map((w, index) => (
+            { departure.wagons.map((w, index) => (
               <SeatMapWagon
                 key={`wagon${index}`}
                 wagonInfo={w}
-                availableSeats={availableSeats}
+                availableSeats={departure.availableSeats}
                 index={index}
                 departureId={this.props.departureId}
               />))

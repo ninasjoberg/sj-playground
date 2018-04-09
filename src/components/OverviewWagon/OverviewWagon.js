@@ -6,6 +6,14 @@ const OverviewWagon = (wagonInfo, index) => {
   const wagon = { ...wagonsOverview[wagonInfo.type], ...wagonInfo };
   const w = `${(wagon.overviewWidth || 192)}px`;
 
+
+  // const scrollToSeat = document.querySelectorAll('.overview-wagon-image');
+  // const scrollSeat = [...scrollToSeat].find((s) => (
+  //   Number(s.dataset.wagonId) === this.props.departure.preSelectedSeat.wagonId && Number(s.dataset.seatId) === this.props.departure.preSelectedSeat.seatId
+  // ));
+  // const leaderScrollTo = (scrollSeat.offsetParent.offsetLeft + scrollSeat.offsetLeft) - (screenWidth / 2);
+  // targets.leaderScroll.scrollTo(leaderScrollTo, 0);  // to show the preselected seat from start
+
   return (
     <div className="overview-wagon" key={index} style={{ width: w }}>
       <div className="overview-wagon-inner">

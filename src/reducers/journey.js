@@ -37,6 +37,12 @@ export default function journey(state = initialState, action) {
     }
 
     case 'TOGGLE_SHOW_SEATMAP': {
+      if (state.showDepartureId === action.departureId) {
+        return {
+          ...state,
+          showDepartureId: false,
+        };
+      }
       return {
         ...state,
         showDepartureId: action.departureId,

@@ -16,6 +16,7 @@
     border-bottom: solid 3px #156e31;
     font-weight: 600;
     letter-spacing: 0.4px;
+    cursor: pointer;
 }
 
 .continue-arrow {

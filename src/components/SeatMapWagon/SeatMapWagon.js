@@ -68,7 +68,6 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, hand
         seatNumber === availableSeat.seat && wagon.number === availableSeat.wagon
       ));
 
-
       const left = seat.side === 'ab' ? totalAbOffset : totalCdOffset;
       const top = seat.top;
       const c = seat.backward ? 'seatmap-seat-backwards' : ' ';
@@ -86,7 +85,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, hand
       return (
         <div className="seatmap-seat" key={`${wagon.number}_${seatNumber}`} data-seat-id={seatNumber} data-wagon-id={wagon.number} style={{ top, left }} onClick={onClick} role="button">
           <div className="seatmap-seat-inner">
-            <img className={c} src={seatIcon} alt="seatIcon" />
+            <img className={c} src={seatIcon} alt="seatIcon" style={ available && {cursor: 'pointer'}} />
             { selected && <span className="seatmap-number">{seatNumber}</span> }
           </div>
         </div>
@@ -96,7 +95,7 @@ const SeatMapWagon = ({ wagonInfo, availableSeats, index, userSelectedSeat, hand
 
 
   return (
-    <div className={cl} key={index} style={{ width: wagon.width }}>
+    <div className={cl} key={index} style={{ width: wagon.width }} data-seatmap-id={wagon.id} >
       {allSeats}
       {allIcons}
       <img className="train-img"src={wagon.interior} alt="seatIcon"></img>
