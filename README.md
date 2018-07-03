@@ -1,13 +1,22 @@
 # sj-playground
 
+Nina Sjöberg & Camilla Tranberg
+
 https://sj-playground-pond.herokuapp.com/
 
-## develop
-```
-npm start
-```
 
-## Deployment
+Project built during our internship at Pond / Ec Sthlm, a playground for designers and the tech team to be able to try new features in the future. We wrote our own code for this playground, it has not been taken from the existing code at the official website. The design is made by Pond /Ec Sthlm, (also at the official website).
+
+
+## Techniques
+- React (create react app)
+- Redux
+
+
+## Getting started:
+`npm i && npm start`
+
+
 
 ### Pre requirements
 You will need to install [heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) and have access to Pond's Heroku account.
